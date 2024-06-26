@@ -1,0 +1,12 @@
+[Unit]
+Description=quadlet that starts the nextcloud kubernetes pod
+
+[Kube]
+AutoUpdate=registry
+Yaml=/home/nextcloud/nextcloud.yaml
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
