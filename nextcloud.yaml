@@ -6,7 +6,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   annotations:
-    bind-mount-options: /home/nextcloud/nextcloud-app/caddy/Caddyfile:Z
+    bind-mount-options: /${HOME}/nextcloud-app/caddy/Caddyfile:Z
     com.docker.official-images.bashbrew.arch/nextcloud-caddy: amd64
     com.docker.official-images.bashbrew.arch/nextcloud-db: amd64
     com.docker.official-images.bashbrew.arch/nextcloud-redis: amd64
@@ -159,26 +159,26 @@ spec:
   restartPolicy: OnFailure
   volumes:
     - hostPath:
-        path: /home/nextcloud/nextcloud-app/caddy/caddy_data
+        path: /${HOME}/nextcloud-app/caddy/caddy_data
         type: Directory
-      name: nextcloud--caddy-caddy_data-host-1
+      name: nextcloud-caddy-caddy_data-host-1
     - hostPath:
-        path: /home/nextcloud/nextcloud-app/caddy/Caddyfile
+        path: /${HOME}/nextcloud-app/caddy/Caddyfile
         type: File
       name: nextcloud-caddy-Caddyfile-host-2
     - hostPath:
-        path: /home/nextcloud/nextcloud-app/db
+        path: /${HOME}/nextcloud-app/db
         type: Directory
       name: nextcloud-db-host-0
     - name: 1764359124e184e87df6a12d6a60bc12cb8c1506adf8d8545b981123b1a98075-pvc
       persistentVolumeClaim:
         claimName: 1764359124e184e87df6a12d6a60bc12cb8c1506adf8d8545b981123b1a98075
     - hostPath:
-        path: /home/nextcloud/nextcloud-app/html
+        path: /${HOME}/nextcloud-app/html
         type: Directory
       name: nextcloud-html-host-0
     - hostPath:
-        path: /home/nextcloud/nextcloud-app/nextcloud_data
+        path: /${HOME}/nextcloud-app/nextcloud_data
         type: Directory
       name: nextcloud_data-host-1
 status: {}
