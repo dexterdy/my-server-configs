@@ -11,6 +11,8 @@ mkdir -p ./nextcloud/{db,caddy,html}
 mkdir ./nextcloud/caddy/caddy_data
 ```
 
+In the nextcloud yaml, update the nextcloud-data volume with the correct path.
+
 then create the following kubernetes secret files and change the passwords:
 
 ```yaml
