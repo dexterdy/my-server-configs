@@ -6,14 +6,16 @@ Setup:
 
 create the following folders:
 ```shell
-mkdir YOUR_STORAGE_DRIVE_LOCATION/nextcloud-data
-mkdir -p ./nextcloud/{db,caddy,html}
-mkdir ./nextcloud/caddy/caddy_data
+mkdir ~/nextcloud-app
+cd ~/nextcloud-app
+mkdir -p ./{db,caddy,html,nextcloud_data}
+mkdir ./caddy/caddy_data
 ```
 
-In the nextcloud yaml, update the nextcloud-data volume with the correct path.
+next, in the nextcloud.yaml file, you will want to to a find and replace:
+replace `/home/nextcloud` with `/home/<your_user>`
 
-then create the following kubernetes secret files and change the passwords:
+Then create the following kubernetes secret files and change the passwords:
 
 ```yaml
 # ./nextcloud-db-secrets
@@ -49,3 +51,5 @@ podman play kube ./nextcloud.yaml
 ```
 
 And you have a working nextcloud! Follow the guide at the top for more detailed instructions on how to set up and access nextcloud
+
+If you want to use the kube file, you should symlink it to the `~/.config/containers/systemd` directory and run `systemctl --user daemon-reload`, after which you can run `systemctl --user enable --now nextcloud`

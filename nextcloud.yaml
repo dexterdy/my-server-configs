@@ -6,7 +6,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   annotations:
-    bind-mount-options: /home/nextcloud/nextcloud/caddy/Caddyfile:Z
+    bind-mount-options: /home/nextcloud/nextcloud-app/caddy/Caddyfile:Z
     com.docker.official-images.bashbrew.arch/nextcloud-caddy: amd64
     com.docker.official-images.bashbrew.arch/nextcloud-db: amd64
     com.docker.official-images.bashbrew.arch/nextcloud-redis: amd64
@@ -91,7 +91,7 @@ spec:
             - CAP_AUDIT_WRITE
       volumeMounts:
         - mountPath: /var/lib/mysql/
-          name: home-nextcloud-nextcloud-db-host-0
+          name: nextcloud-db-host-0
     - name: nextcloud-redis
       image: docker.io/library/redis:alpine
       args:
@@ -134,9 +134,9 @@ spec:
             - CAP_AUDIT_WRITE
       volumeMounts:
         - mountPath: /var/www/html/
-          name: home-nextcloud-nextcloud-html-host-0
+          name: nextcloud-html-host-0
         - mountPath: /var/www/html/data
-          name: home-nextcloud-nextcloud-app-nextcloud-data-host-1
+          name: nextcloud_data-host-1
     - name: nextcloud-caddy
       image: docker.io/library/caddy:latest
       resources: {}
@@ -148,37 +148,37 @@ spec:
             - CAP_AUDIT_WRITE
       volumeMounts:
         - mountPath: /var/www/html
-          name: home-nextcloud-nextcloud-html-host-0
+          name: nextcloud-html-host-0
           readOnly: true
         - mountPath: /data
-          name: home-nextcloud-nextcloud-caddy-caddy_data-host-1
+          name: nextcloud-caddy-caddy_data-host-1
         - mountPath: /etc/caddy/Caddyfile
-          name: home-nextcloud-nextcloud-caddy-Caddyfile-host-2
+          name: nextcloud-caddy-Caddyfile-host-2
   enableServiceLinks: false
   hostname: nextcloud
   restartPolicy: OnFailure
   volumes:
     - hostPath:
-        path: /home/nextcloud/nextcloud/caddy/caddy_data
+        path: /home/nextcloud/nextcloud-app/caddy/caddy_data
         type: Directory
-      name: home-nextcloud-nextcloud-caddy-caddy_data-host-1
+      name: nextcloud--caddy-caddy_data-host-1
     - hostPath:
-        path: /home/nextcloud/nextcloud/caddy/Caddyfile
+        path: /home/nextcloud/nextcloud-app/caddy/Caddyfile
         type: File
-      name: home-nextcloud-nextcloud-caddy-Caddyfile-host-2
+      name: nextcloud-caddy-Caddyfile-host-2
     - hostPath:
-        path: /home/nextcloud/nextcloud/db
+        path: /home/nextcloud/nextcloud-app/db
         type: Directory
-      name: home-nextcloud-nextcloud-db-host-0
+      name: nextcloud-db-host-0
     - name: 1764359124e184e87df6a12d6a60bc12cb8c1506adf8d8545b981123b1a98075-pvc
       persistentVolumeClaim:
         claimName: 1764359124e184e87df6a12d6a60bc12cb8c1506adf8d8545b981123b1a98075
     - hostPath:
-        path: /home/nextcloud/nextcloud/html
+        path: /home/nextcloud/nextcloud-app/html
         type: Directory
-      name: home-nextcloud-nextcloud-html-host-0
+      name: nextcloud-html-host-0
     - hostPath:
-        path: /home/nextcloud/nextcloud-app/nextcloud-data
+        path: /home/nextcloud/nextcloud-app/nextcloud_data
         type: Directory
-      name: home-nextcloud-nextcloud-app-nextcloud-data-host-1
+      name: nextcloud_data-host-1
 status: {}

@@ -1,6 +1,6 @@
 *secret*
 nextcloud/*
-nextcloud-data/*
+nextcloud_data/*
 !nextcloud/caddy
 nextcloud/caddy/*
 !nextcloud/caddy/Caddyfile
