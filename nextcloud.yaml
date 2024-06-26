@@ -136,7 +136,7 @@ spec:
         - mountPath: /var/www/html/
           name: home-nextcloud-nextcloud-html-host-0
         - mountPath: /var/www/html/data
-          name: home-nextcloud-nextcloud-data-host-1
+          name: home-nextcloud-nextcloud-app-nextcloud-data-host-1
     - name: nextcloud-caddy
       image: docker.io/library/caddy:latest
       resources: {}
@@ -178,7 +178,7 @@ spec:
         type: Directory
       name: home-nextcloud-nextcloud-html-host-0
     - hostPath:
-        path: /home/nextcloud/nextcloud-data
+        path: /home/nextcloud/nextcloud-app/nextcloud-data
         type: Directory
-      name: home-nextcloud-nextcloud-data-host-1
+      name: home-nextcloud-nextcloud-app-nextcloud-data-host-1
 status: {}
