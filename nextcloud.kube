@@ -3,7 +3,7 @@ Description=quadlet that starts the nextcloud kubernetes pod
 
 [Kube]
 AutoUpdate=registry
-Yaml=./nextcloud.yaml
+Yaml=~/nextcloud-app/nextcloud.yaml
 
 [Service]
 Restart=always
