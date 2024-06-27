@@ -12,9 +12,6 @@ mkdir -p ./{db,caddy,html,nextcloud_data}
 mkdir ./caddy/caddy_data
 ```
 
-next, in the nextcloud.yaml file, you will want to to a find and replace:
-replace `/home/nextcloud` with `/home/<your_user>`
-
 Then create the following kubernetes secret files and change the passwords:
 
 ```yaml
@@ -25,11 +22,11 @@ kind: Secret
 metadata:
   name: nextcloud-db-secrets
 type: Opaque
-data:
+stringData:
   MYSQL_USER: nextcloud
-  MYSQL_PASSWORD: YourPassword
+  MYSQL_PASSWORD: YourDBPassword
   MYSQL_DATABASE: nextcloud
-  MYSQL_ROOT_PASSWORD: YourPassword
+  MYSQL_ROOT_PASSWORD: YourDBRootPassword
 ```
 
 ```yaml
@@ -40,13 +37,15 @@ kind: Secret
 metadata:
   name: nextcloud-redis-secrets
 type: Opaque
-data:
-  REDIS_HOST_PASSWORD: YourPassword
+stringData:
+  REDIS_HOST_PASSWORD: YourRedisPassword
 ```
 
 after that just
 
 ```shell
+podman play kube ./nextcloud-db-secrets
+podman play kube ./nextcloud-redis-secrets
 podman play kube ./nextcloud.yaml
 ```
 
