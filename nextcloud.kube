@@ -7,8 +7,8 @@ Yaml=/${HOME}/nextcloud-app/nextcloud.yaml
 SetWorkingDirectory=yaml
 
 [Service]
-ExecStartPre=podman kube play /${HOME}/nextcloud-redis-secrets.yaml
-ExecStartPre=podman kube play /${HOME}/nextcloud-db-secrets.yaml
+ExecStartPre=podman kube play /${HOME}/nextcloud-app/nextcloud-redis-secrets.yaml
+ExecStartPre=podman kube play /${HOME}/nextcloud-app/nextcloud-db-secrets.yaml
 Restart=always
 
 [Install]
