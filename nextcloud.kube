@@ -3,12 +3,12 @@ Description=quadlet that starts the nextcloud kubernetes pod
 
 [Kube]
 AutoUpdate=registry
-Yaml=${HOME}/nextcloud-app/nextcloud.yaml
+Yaml=%h/nextcloud-app/nextcloud.yaml
 
 [Service]
-WorkingDirectory=${HOME}/nextcloud-app
-ExecStartPre=/usr/bin/podman kube play ${HOME}/nextcloud-app/nextcloud-redis-secrets.yaml
-ExecStartPre=/usr/bin/podman kube play ${HOME}/nextcloud-app/nextcloud-db-secrets.yaml
+WorkingDirectory=%h/nextcloud-app
+ExecStartPre=/usr/bin/podman kube play %h/nextcloud-app/nextcloud-redis-secrets.yaml
+ExecStartPre=/usr/bin/podman kube play %h/nextcloud-app/nextcloud-db-secrets.yaml
 Restart=always
 
 [Install]
