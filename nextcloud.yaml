@@ -80,8 +80,8 @@ spec:
         - secretRef:
             name: nextcloud-db-secrets
       ports:
-        - containerPort: 80
-          hostPort: 5080
+        - containerPort: 443
+          hostPort: 5443
       resources: {}
       securityContext:
         capabilities:
