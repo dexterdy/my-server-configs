@@ -122,9 +122,6 @@ spec:
             name: nextcloud-db-secrets
         - secretRef:
             name: nextcloud-redis-secrets
-      ports:
-        - containerPort: 9000
-          hostPort: 5080
       resources: {}
       securityContext:
         capabilities:
