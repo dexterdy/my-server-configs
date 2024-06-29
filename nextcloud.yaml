@@ -123,7 +123,7 @@ spec:
         - secretRef:
             name: nextcloud-redis-secrets
       ports:
-        - containerPort: 80
+        - containerPort: 9000
           hostPort: 5080
       resources: {}
       securityContext:
