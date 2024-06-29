@@ -122,6 +122,9 @@ spec:
             name: nextcloud-db-secrets
         - secretRef:
             name: nextcloud-redis-secrets
+      ports:
+        - containerPort: 80
+          hostPort: 5080
       resources: {}
       securityContext:
         capabilities:
@@ -134,26 +137,6 @@ spec:
           name: nextcloud_html
         - mountPath: /var/www/html/data
           name: nextcloud_data
-    - name: nextcloud-caddy
-      image: docker.io/library/caddy:latest
-      ports:
-        - containerPort: 80
-          hostPort: 5080
-      resources: {}
-      securityContext:
-        capabilities:
-          drop:
-            - CAP_MKNOD
-            - CAP_NET_RAW
-            - CAP_AUDIT_WRITE
-      volumeMounts:
-        - mountPath: /var/www/html
-          name: nextcloud_html
-          readOnly: true
-        - mountPath: /data
-          name: nextcloud_caddy_data
-        - mountPath: /etc/caddy/Caddyfile
-          name: nextcloud_caddyfile
   enableServiceLinks: false
   hostname: nextcloud
   restartPolicy: OnFailure
