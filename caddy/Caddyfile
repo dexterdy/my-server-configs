@@ -21,3 +21,6 @@
 		path /occ
 		path /console.php
 	}
+
+	respond @forbidden 404
+}
