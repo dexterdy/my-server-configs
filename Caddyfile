@@ -1,4 +1,4 @@
-nextcloud.scardex-pods.taile1eb45.ts.net {
+scardex-pods.taile1eb45.ts.net {
 	encode gzip
 
 	header Strict-Transport-Security max-age=15552000;
