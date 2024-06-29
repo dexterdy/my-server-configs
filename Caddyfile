@@ -2,5 +2,5 @@ nextcloud.scardex-pods.taile1eb45.ts.net {
 	encode gzip
 
 	header Strict-Transport-Security max-age=15552000;
-	reverse_proxy http://10.0.2.2:5080
+	reverse_proxy http://localhost:5080
 }
