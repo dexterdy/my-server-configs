@@ -4,10 +4,11 @@ I followed [this](https://help.nextcloud.com/t/tutorial-for-running-nextcloud-in
 
 Setup:
 
-create the following folders:
+execute the following commands:
 ```shell
 mkdir ~/nextcloud-app
 cd ~/nextcloud-app
+git clone https://github.com/dexterdy/nextcloud-kubernetes-podman-config.git .
 mkdir -p ./{db,caddy,html,nextcloud_data}
 mkdir ./caddy/caddy_data
 ```
