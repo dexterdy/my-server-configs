@@ -52,4 +52,4 @@ podman play kube ./nextcloud.yaml
 
 And you have a working nextcloud! Follow the guide at the top for more detailed instructions on how to set up and access nextcloud
 
-If you want to use the kube file, you should symlink it to the `~/.config/containers/systemd` directory and run `systemctl --user daemon-reload`, after which you can run `systemctl --user enable --now nextcloud`
+If you want to use the kube file, you should symlink it to the `~/.config/containers/systemd` directory and run `systemctl --user daemon-reload`, after which you can run `systemctl --user start nextcloud`
