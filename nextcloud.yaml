@@ -154,6 +154,21 @@ spec:
           name: nextcloud_caddy_data
         - mountPath: /etc/caddy/Caddyfile
           name: nextcloud_caddyfile
+    - name: nextcloud-collabora
+      image: docker.io/collabora/code:latest
+      ports:
+        - containerPort: 9980
+          hostPort: 9980
+      envFrom:
+        - secretRef:
+            name: nextcloud-collabora-secrets
+      resources: {}
+      securityContext:
+        capabilities:
+          drop:
+            - CAP_MKNOD
+            - CAP_NET_RAW
+            - CAP_AUDIT_WRITE
   enableServiceLinks: false
   hostname: nextcloud
   restartPolicy: OnFailure
