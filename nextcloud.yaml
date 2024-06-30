@@ -162,6 +162,13 @@ spec:
       envFrom:
         - secretRef:
             name: nextcloud-collabora-secrets
+      env:
+        - name: domain
+          value: office.scardex.nl
+        - name: server_name
+          value: office.scardex.nl
+        - name: extra_params
+          value: --o:ssl.enable=false --o:ssl.termination=true
       resources: {}
       securityContext:
         capabilities:
