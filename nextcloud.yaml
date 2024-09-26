@@ -7,6 +7,10 @@ kind: Pod
 metadata:
   annotations:
     bind-mount-options: caddy/Caddyfile:Z
+    bind-mount-options: caddy/caddy_data:Z
+    bind-mount-options: db:Z
+    bind-mount-options: html:z
+    bind-mount-options: nextcloud_data:Z
     io.containers.autoupdate/nextcloud: registry
     io.containers.autoupdate/caddy: registry
     io.containers.autoupdate/maria-db: registry
