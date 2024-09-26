@@ -92,7 +92,7 @@ spec:
             - CAP_NET_RAW
             - CAP_AUDIT_WRITE
       volumeMounts:
-        - mountPath: /var/www/html:ro,z
+        - mountPath: /var/www/html:z
           name: nextcloud_html
           readOnly: true
         - mountPath: /data:Z
