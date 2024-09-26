@@ -7,62 +7,11 @@ kind: Pod
 metadata:
   annotations:
     bind-mount-options: caddy/Caddyfile:Z
-    com.docker.official-images.bashbrew.arch/nextcloud-caddy: amd64
-    com.docker.official-images.bashbrew.arch/nextcloud-db: amd64
-    com.docker.official-images.bashbrew.arch/nextcloud-redis: amd64
-    io.containers.autoupdate/nextcloud-app: registry
-    io.containers.autoupdate/nextcloud-caddy: registry
-    io.containers.autoupdate/nextcloud-db: registry
-    io.containers.autoupdate/nextcloud-redis: registry
-    io.kubernetes.cri-o.ContainerType/nextcloud-app: container
-    io.kubernetes.cri-o.ContainerType/nextcloud-caddy: container
-    io.kubernetes.cri-o.ContainerType/nextcloud-db: container
-    io.kubernetes.cri-o.ContainerType/nextcloud-redis: container
-    io.kubernetes.cri-o.SandboxID/nextcloud-app: 76cfdd70f136929a5cf54e8078f86cb53699c77c42fc24dd91ad8bc9f791388
-    io.kubernetes.cri-o.SandboxID/nextcloud-caddy: 76cfdd70f136929a5cf54e8078f86cb53699c77c42fc24dd91ad8bc9f791388
-    io.kubernetes.cri-o.SandboxID/nextcloud-db: 76cfdd70f136929a5cf54e8078f86cb53699c77c42fc24dd91ad8bc9f791388
-    io.kubernetes.cri-o.SandboxID/nextcloud-redis: 76cfdd70f136929a5cf54e8078f86cb53699c77c42fc24dd91ad8bc9f791388
-    io.kubernetes.cri-o.TTY/nextcloud-app: "false"
-    io.kubernetes.cri-o.TTY/nextcloud-caddy: "false"
-    io.kubernetes.cri-o.TTY/nextcloud-db: "false"
-    io.kubernetes.cri-o.TTY/nextcloud-redis: "false"
-    io.podman.annotations.autoremove/nextcloud-app: "FALSE"
-    io.podman.annotations.autoremove/nextcloud-caddy: "FALSE"
-    io.podman.annotations.autoremove/nextcloud-db: "FALSE"
-    io.podman.annotations.autoremove/nextcloud-redis: "FALSE"
-    io.podman.annotations.init/nextcloud-app: "FALSE"
-    io.podman.annotations.init/nextcloud-caddy: "FALSE"
-    io.podman.annotations.init/nextcloud-db: "FALSE"
-    io.podman.annotations.init/nextcloud-redis: "FALSE"
-    io.podman.annotations.privileged/nextcloud-app: "FALSE"
-    io.podman.annotations.privileged/nextcloud-caddy: "FALSE"
-    io.podman.annotations.privileged/nextcloud-db: "FALSE"
-    io.podman.annotations.privileged/nextcloud-redis: "FALSE"
-    io.podman.annotations.publish-all/nextcloud-app: "FALSE"
-    io.podman.annotations.publish-all/nextcloud-caddy: "FALSE"
-    io.podman.annotations.publish-all/nextcloud-db: "FALSE"
-    io.podman.annotations.publish-all/nextcloud-redis: "FALSE"
-    org.opencontainers.image.base.digest/nextcloud-caddy: sha256:dabf91b69c191a1a0a1628fd6bdd029c0c4018041c7f052870bb13c5
-    org.opencontainers.image.base.digest/nextcloud-db: sha256:94db6b944510db19c0ff5eb13281cf166abfe6f9e01a6f8e716e9766
-    org.opencontainers.image.base.digest/nextcloud-redis: sha256:dabf91b69c191a1a0a1628fd6bdd029c0c4018041c7f052870bb13c5
-    org.opencontainers.image.base.name/nextcloud-caddy: alpine:3.20
-    org.opencontainers.image.base.name/nextcloud-db: ubuntu:jammy
-    org.opencontainers.image.base.name/nextcloud-redis: alpine:3.20
-    org.opencontainers.image.created/nextcloud-caddy: "2024-06-04T22:12:59Z"
-    org.opencontainers.image.created/nextcloud-db: "2024-06-11T02:37:24Z"
-    org.opencontainers.image.created/nextcloud-redis: "2024-05-22T23:17:59Z"
-    org.opencontainers.image.revision/nextcloud-caddy: 645721b4b87b6c3a692641213853ce064eb82fe2
-    org.opencontainers.image.revision/nextcloud-db: 81c4ce79659a9b705686b5704a3f3d3b9119532a
-    org.opencontainers.image.revision/nextcloud-redis: 5f08363e6d64b97a0c2e651f4bdcec6e71a32ab4
-    org.opencontainers.image.source/nextcloud-caddy: https://github.com/caddyserver/caddy-docker.git#645721b4b87b6c3
-    org.opencontainers.image.source/nextcloud-db: https://github.com/MariaDB/mariadb-docker.git#81c4ce79659a9b705
-    org.opencontainers.image.source/nextcloud-redis: https://github.com/docker-library/redis.git#5f08363e6d64b97a0c2
-    org.opencontainers.image.url/nextcloud-caddy: https://hub.docker.com/_/caddy
-    org.opencontainers.image.url/nextcloud-db: https://hub.docker.com/_/mariadb
-    org.opencontainers.image.url/nextcloud-redis: https://hub.docker.com/_/redis
-    org.opencontainers.image.version/nextcloud-caddy: 2.8.4-alpine
-    org.opencontainers.image.version/nextcloud-db: 10.11.8-jammy
-    org.opencontainers.image.version/nextcloud-redis: 7.2.5-alpine
+    io.containers.autoupdate/nextcloud: registry
+    io.containers.autoupdate/caddy: registry
+    io.containers.autoupdate/maria-db: registry
+    io.containers.autoupdate/redis: registry
+    io.containers.autoupdate/collabora: registry
   creationTimestamp: "2024-06-26T09:29:04Z"
   labels:
     app: nextcloud
@@ -70,7 +19,7 @@ metadata:
 spec:
   automountServiceAccountToken: false
   containers:
-    - name: nextcloud-db
+    - name: maria-db
       image: docker.io/library/mariadb:10
       args:
         - --transaction-isolation=READ-COMMITTED
@@ -89,7 +38,7 @@ spec:
       volumeMounts:
         - mountPath: /var/lib/mysql/
           name: nextcloud_db
-    - name: nextcloud-redis
+    - name: redis
       image: docker.io/library/redis:alpine
       args:
         - redis-server
@@ -108,7 +57,7 @@ spec:
       volumeMounts:
         - mountPath: /data
           name: 1764359124e184e87df6a12d6a60bc12cb8c1506adf8d8545b981123b1a98075-pvc
-    - name: nextcloud-app
+    - name: nextcloud
       image: docker.io/library/nextcloud:fpm-alpine
       args:
         - php-fpm
@@ -134,7 +83,7 @@ spec:
           name: nextcloud_html
         - mountPath: /var/www/html/data
           name: nextcloud_data
-    - name: nextcloud-caddy
+    - name: caddy
       image: docker.io/library/caddy:latest
       ports:
         - containerPort: 80
@@ -154,7 +103,7 @@ spec:
           name: nextcloud_caddy_data
         - mountPath: /etc/caddy/Caddyfile
           name: nextcloud_caddyfile
-    - name: nextcloud-collabora
+    - name: collabora
       image: docker.io/collabora/code:latest
       ports:
         - containerPort: 9980
@@ -192,9 +141,6 @@ spec:
         path: db
         type: Directory
       name: nextcloud_db
-    - name: 1764359124e184e87df6a12d6a60bc12cb8c1506adf8d8545b981123b1a98075-pvc
-      persistentVolumeClaim:
-        claimName: 1764359124e184e87df6a12d6a60bc12cb8c1506adf8d8545b981123b1a98075
     - hostPath:
         path: html
         type: Directory
