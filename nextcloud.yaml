@@ -56,7 +56,7 @@ spec:
             - CAP_AUDIT_WRITE
       volumeMounts:
         - mountPath: /data
-          name: 1764359124e184e87df6a12d6a60bc12cb8c1506adf8d8545b981123b1a98075-pvc
+          name: nextcloud_redis_data
     - name: nextcloud
       image: docker.io/library/nextcloud:fpm-alpine
       args:
@@ -141,6 +141,9 @@ spec:
         path: db
         type: Directory
       name: nextcloud_db
+    - name: nextcloud_redis_data
+      persistentVolumeClaim:
+        claimName: nextcloud_redis_data
     - hostPath:
         path: html
         type: Directory
