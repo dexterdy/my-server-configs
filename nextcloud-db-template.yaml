@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: nextcloud-db-secret
+  name: nextcloud-db-secrets
 stringData:
   MYSQL_DATABASE:
   MYSQL_USER:
