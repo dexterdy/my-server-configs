@@ -75,6 +75,9 @@ spec:
       securityContext:
         allowPrivilegeEscalation: true
         readOnlyRootFilesystem: false
+        privileged: true
+        seLinuxOptions:
+          type: spc_t
         capabilities:
           drop:
             - CAP_MKNOD
