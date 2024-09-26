@@ -73,6 +73,8 @@ spec:
             name: nextcloud-redis-secrets
       resources: {}
       securityContext:
+        allowPrivilegeEscalation: true
+        readOnlyRootFilesystem: false
         capabilities:
           drop:
             - CAP_MKNOD
