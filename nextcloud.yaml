@@ -6,7 +6,6 @@ apiVersion: v1
 kind: Pod
 metadata:
   annotations:
-    bind-mount-options: caddy/Caddyfile:Z,caddy/caddy_data:Z,db:Z,html:z,nextcloud_data:Z
     io.containers.autoupdate/nextcloud: registry
     io.containers.autoupdate/caddy: registry
     io.containers.autoupdate/maria-db: registry
@@ -36,7 +35,7 @@ spec:
             - CAP_NET_RAW
             - CAP_AUDIT_WRITE
       volumeMounts:
-        - mountPath: /var/lib/mysql/
+        - mountPath: /var/lib/mysql/:Z
           name: nextcloud_db
     - name: redis
       image: docker.io/library/redis:alpine
@@ -54,9 +53,6 @@ spec:
             - CAP_MKNOD
             - CAP_NET_RAW
             - CAP_AUDIT_WRITE
-      volumeMounts:
-        - mountPath: /data
-          name: nextcloud_redis_data
     - name: nextcloud
       image: docker.io/library/nextcloud:fpm-alpine
       args:
@@ -73,20 +69,15 @@ spec:
             name: nextcloud-redis-secrets
       resources: {}
       securityContext:
-        allowPrivilegeEscalation: true
-        readOnlyRootFilesystem: false
-        privileged: true
-        seLinuxOptions:
-          type: spc_t
         capabilities:
           drop:
             - CAP_MKNOD
             - CAP_NET_RAW
             - CAP_AUDIT_WRITE
       volumeMounts:
-        - mountPath: /var/www/html/
+        - mountPath: /var/www/html/:z
           name: nextcloud_html
-        - mountPath: /var/www/html/data
+        - mountPath: /var/www/html/data:z
           name: nextcloud_data
     - name: caddy
       image: docker.io/library/caddy:latest
@@ -101,12 +92,12 @@ spec:
             - CAP_NET_RAW
             - CAP_AUDIT_WRITE
       volumeMounts:
-        - mountPath: /var/www/html
+        - mountPath: /var/www/html:ro,z
           name: nextcloud_html
           readOnly: true
-        - mountPath: /data
+        - mountPath: /data:Z
           name: nextcloud_caddy_data
-        - mountPath: /etc/caddy/Caddyfile
+        - mountPath: /etc/caddy/Caddyfile:Z
           name: nextcloud_caddyfile
     - name: collabora
       image: docker.io/collabora/code:latest
@@ -146,9 +137,6 @@ spec:
         path: db
         type: Directory
       name: nextcloud_db
-    - name: nextcloud_redis_data
-      persistentVolumeClaim:
-        claimName: nextcloud_redis_data
     - hostPath:
         path: html
         type: Directory
