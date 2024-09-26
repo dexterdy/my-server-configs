@@ -130,7 +130,7 @@ spec:
   restartPolicy: OnFailure
   volumes:
     - hostPath:
-        path: caddy/caddy_data:z
+        path: caddy/caddy_data
         type: Directory
       name: nextcloud_caddy_data
     - hostPath:
@@ -138,18 +138,18 @@ spec:
         type: File
       name: nextcloud_caddyfile
     - hostPath:
-        path: db:z
+        path: db
         type: Directory
       name: nextcloud_db
     - name: nextcloud_redis_data
       persistentVolumeClaim:
         claimName: nextcloud_redis_data
     - hostPath:
-        path: html:z
+        path: html
         type: Directory
       name: nextcloud_html
     - hostPath:
-        path: nextcloud_data:z
+        path: nextcloud_data
         type: Directory
       name: nextcloud_data
 status: {}
