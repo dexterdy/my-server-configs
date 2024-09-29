@@ -23,4 +23,8 @@
 	}
 
 	respond @forbidden 404
+
+    header {
+        Strict-Transport-Security max-age=31536000; preload;
+    }    
 }
