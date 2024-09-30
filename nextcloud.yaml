@@ -142,7 +142,7 @@ spec:
         type: Directory
       name: nextcloud_html
     - hostPath:
-        path: nextcloud_data
+        path: /mnt/nextcloud_data
         type: Directory
       name: nextcloud_data
 status: {}
