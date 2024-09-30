@@ -31,13 +31,13 @@
 :9981 {
     encode gzip zstd
     @collabora {
-        path /browser/*
-        path /hosting/discovery
-        path /hosting/capabilities
-        path /cool/*
+        path /browser/* # Browser is the client part of LibreOffice Online
+        path /hosting/discovery # WOPI discovery URL
+        path /hosting/capabilities # Show capabilities as json
+        path /cool/* # Main websocket, uploads/downloads, presentations and admin
     }
 
-    reverse_proxy @collabora localhost:9980 {
+    reverse_proxy @collabora https://127.0.0.1:9980 {
         header_up Host {host}
         header_up Connection "Upgrade"
         header_up Upgrade websocket
