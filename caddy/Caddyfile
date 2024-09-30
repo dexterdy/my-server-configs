@@ -30,27 +30,27 @@
 
 :9981 {
     encode gzip zstd
-	@collabora {
-		path /browser/* # Browser is the client part of LibreOffice Online
-		path /hosting/discovery # WOPI discovery URL
-		path /hosting/capabilities # Show capabilities as json
-		path /cool/* # Main websocket, uploads/downloads, presentations and admin
-	}
+    @collabora {
+        path /browser/* # Browser is the client part of LibreOffice Online
+        path /hosting/discovery # WOPI discovery URL
+        path /hosting/capabilities # Show capabilities as json
+        path /cool/* # Main websocket, uploads/downloads, presentations and admin
+    }
 
-	reverse_proxy @collabora https://127.0.0.1:9980 {
-		header_up Host {host}
-		header_up Connection "Upgrade"
-		header_up Upgrade websocket
-		transport http {
-			tls_insecure_skip_verify
-		}
-	}
+    reverse_proxy @collabora https://127.0.0.1:9980 {
+        header_up Host {host}
+        header_up Connection "Upgrade"
+        header_up Upgrade websocket
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
 
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
     }
 
     log {
-		output file /var/log/collabora.log
-	}
+        output file /var/log/collabora.log
+    }
 }
