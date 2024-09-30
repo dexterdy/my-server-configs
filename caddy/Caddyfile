@@ -49,4 +49,8 @@
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
     }
+
+    log {
+		output file /var/log/collabora.log
+	}
 }
