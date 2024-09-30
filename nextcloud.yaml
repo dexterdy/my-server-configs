@@ -102,8 +102,8 @@ spec:
     - name: collabora
       image: docker.io/collabora/code:latest
       ports:
-        - containerPort: 9981
-          hostPort: 9981
+        - containerPort: 9980
+          hostPort: 9980
       envFrom:
         - secretRef:
             name: nextcloud-collabora-secrets
