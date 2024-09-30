@@ -102,8 +102,8 @@ spec:
     - name: collabora
       image: docker.io/collabora/code:latest
       ports:
-        - containerPort: 9980
-          hostPort: 9980
+        - containerPort: 9981
+          hostPort: 9981
       envFrom:
         - secretRef:
             name: nextcloud-collabora-secrets
@@ -118,9 +118,10 @@ spec:
       securityContext:
         capabilities:
           drop:
-            - CAP_MKNOD
             - CAP_NET_RAW
             - CAP_AUDIT_WRITE
+          add:
+            - CAP_MKNOD
   enableServiceLinks: false
   hostname: nextcloud
   restartPolicy: OnFailure
