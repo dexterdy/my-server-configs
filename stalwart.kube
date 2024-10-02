@@ -3,7 +3,7 @@ Description=quadlet that starts the stalwart pod
 
 [Kube]
 AutoUpdate=registry
-Yaml=%h/stalwart-app/stalwart.yaml
+Yaml=%h/nextcloud-app/stalwart.yaml
 SetWorkingDirectory=yaml
 
 [Service]
