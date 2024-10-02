@@ -1,0 +1,13 @@
+[Unit]
+Description=quadlet that starts the syncthing pod
+
+[Kube]
+AutoUpdate=registry
+Yaml=%h/syncthing-app/syncthing.yaml
+SetWorkingDirectory=yaml
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

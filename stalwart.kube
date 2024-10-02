@@ -1,0 +1,13 @@
+[Unit]
+Description=quadlet that starts the stalwart pod
+
+[Kube]
+AutoUpdate=registry
+Yaml=%h/stalwart-app/stalwart.yaml
+SetWorkingDirectory=yaml
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,5 +1,5 @@
 [Unit]
-Description=quadlet that starts the nextcloud kubernetes pod
+Description=quadlet that starts the nextcloud pod
 
 [Kube]
 AutoUpdate=registry
