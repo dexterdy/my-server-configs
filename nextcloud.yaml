@@ -141,6 +141,26 @@ spec:
       volumeMounts:
         - mountPath: /var/syncthing:z
           name: nextcloud_data
+    - name: stalwart-mail
+      image: docker.io/stalwartlabs/mail-server:latest
+      ports:
+        - containerPort: 25
+          hostPort: 25
+        - containerPort: 465
+          hostPort: 465
+        - containerPort: 993
+          hostPort: 993
+        - containerPort: 443
+          hostPort: 8443
+      securityContext:
+        capabilities:
+          drop:
+            - CAP_MKNOD
+            - CAP_NET_RAW
+            - CAP_AUDIT_WRITE
+      volumeMounts:
+        - mountPath: /opt/stalwart-mail:Z
+          name: stalwart_data
   enableServiceLinks: false
   hostname: nextcloud
   restartPolicy: OnFailure
