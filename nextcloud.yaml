@@ -11,12 +11,13 @@ metadata:
     io.containers.autoupdate/maria-db: registry
     io.containers.autoupdate/redis: registry
     io.containers.autoupdate/collabora: registry
+    io.containers.autoupdate/syncthing: registry
   creationTimestamp: "2024-06-26T09:29:04Z"
   labels:
     app: nextcloud
   name: nextcloud
 spec:
-  automountServiceAccountToken: false
+  hostNetwork: true
   containers:
     - name: maria-db
       image: docker.io/library/mariadb:10
@@ -122,6 +123,24 @@ spec:
             - CAP_AUDIT_WRITE
           add:
             - CAP_MKNOD
+    - name: syncthing
+      image: docker.io/syncthing/syncthing:latest
+      ports:
+        - containerPort: 8384
+          hostPort: 8384
+        - containerPort: 22000
+          hostPort: 22000
+        - containerPort: 21027
+          hostPort: 21027
+      securityContext:
+        capabilities:
+          drop:
+            - CAP_MKNOD
+            - CAP_NET_RAW
+            - CAP_AUDIT_WRITE
+      volumeMounts:
+        - mountPath: /var/syncthing:z
+          name: nextcloud_data
   enableServiceLinks: false
   hostname: nextcloud
   restartPolicy: OnFailure
