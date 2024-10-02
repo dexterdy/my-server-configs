@@ -5,7 +5,6 @@ Description=quadlet that starts the nextcloud pod
 AutoUpdate=registry
 Yaml=%h/nextcloud-app/nextcloud.yaml
 SetWorkingDirectory=yaml
-UserNS=keep-id:uid=82,gid=82
 
 [Service]
 ExecStartPre=/usr/bin/podman kube play ./nextcloud-collabora-secrets.yaml
