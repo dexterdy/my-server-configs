@@ -7,7 +7,6 @@ metadata:
     app: stalwart
   name: stalwart
 spec:
-  hostNetwork: true
   enableServiceLinks: false
   hostname: syncthing
   restartPolicy: OnFailure

@@ -12,7 +12,6 @@ metadata:
     app: nextcloud
   name: nextcloud
 spec:
-  hostNetwork: true
   enableServiceLinks: false
   hostname: nextcloud
   restartPolicy: OnFailure
