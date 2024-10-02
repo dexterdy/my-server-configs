@@ -21,11 +21,17 @@ spec:
             - CAP_NET_RAW
             - CAP_AUDIT_WRITE
       volumeMounts:
-        - mountPath: /var/syncthing:z
+        - mountPath: /var/syncthing/Sync:z
           name: nextcloud_data
+        - mountPath: /var/syncthing:Z
+          name: syncthing_config
   volumes:
     - hostPath:
         path: /mnt/nextcloud_data/j.p.hagedoorn/files
         type: Directory
       name: nextcloud_data
+    - hostPath:
+        path: syncthing_config
+        type: Directory
+      name: syncthing_config
 status: {}
