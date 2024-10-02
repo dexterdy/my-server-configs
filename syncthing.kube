@@ -8,7 +8,6 @@ SetWorkingDirectory=yaml
 
 [Service]
 Restart=always
-UserNS=auto
 
 [Install]
 WantedBy=multi-user.target
