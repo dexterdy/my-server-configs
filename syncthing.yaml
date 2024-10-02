@@ -32,7 +32,7 @@ spec:
           name: nextcloud_data
   volumes:
     - hostPath:
-        path: /mnt/nextcloud_data
+        path: /mnt/nextcloud_data/j.p.hagedoorn/files:z
         type: Directory
       name: nextcloud_data
 status: {}
