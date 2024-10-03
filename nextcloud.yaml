@@ -129,6 +129,13 @@ spec:
             - CAP_MKNOD
             - CAP_NET_RAW
             - CAP_AUDIT_WRITE
+      ports:
+        - containerPort: 8384
+          hostPort: 8384
+        - containerPort: 22000
+          hostPort: 22000
+        - containerPort: 21027
+          hostPort: 21027
       volumeMounts:
         - mountPath: /var/syncthing/Sync:z
           name: syncthing_data
