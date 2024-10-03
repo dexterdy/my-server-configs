@@ -16,6 +16,8 @@ spec:
   enableServiceLinks: false
   hostname: nextcloud
   restartPolicy: OnFailure
+  securityContext:
+    fsGroup: 2000
   containers:
     - name: maria-db
       image: docker.io/library/mariadb:10
@@ -68,6 +70,7 @@ spec:
             name: nextcloud-redis-secrets
       resources: {}
       securityContext:
+        supplementalGroups: [2000]
         capabilities:
           drop:
             - CAP_MKNOD
@@ -124,6 +127,7 @@ spec:
     - name: syncthing
       image: docker.io/syncthing/syncthing:latest
       securityContext:
+        supplementalGroups: [2000]
         capabilities:
           drop:
             - CAP_MKNOD
