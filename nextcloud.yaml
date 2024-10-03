@@ -17,6 +17,9 @@ spec:
   enableServiceLinks: false
   hostname: nextcloud
   restartPolicy: OnFailure
+  securityContext:
+    privileged: true
+    allowPrivilegeEscalation: true
 
   containers:
     - name: maria-db
