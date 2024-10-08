@@ -19,7 +19,10 @@ spec:
   restartPolicy: OnFailure
 
   securityContext:
+    runAsGroup: 3000
+    runAsUser: 0
     supplementalGroups: [4000]
+
   containers:
     - name: maria-db
       image: docker.io/library/mariadb:10
