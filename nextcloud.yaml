@@ -18,6 +18,10 @@ spec:
   hostname: nextcloud
   restartPolicy: OnFailure
 
+  securityContext:
+  capabilities:
+    add: ["SETFCAP"]
+
   containers:
     - name: maria-db
       image: docker.io/library/mariadb:10
