@@ -2,12 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   annotations:
-    io.containers.autoupdate/nextcloud: registry
-    io.containers.autoupdate/caddy: registry
-    io.containers.autoupdate/maria-db: registry
-    io.containers.autoupdate/redis: registry
-    io.containers.autoupdate/collabora: registry
-    io.containers.autoupdate/syncthing: registry
+    io.containers.autoupdate: registry
   creationTimestamp: "2024-06-26T09:29:04Z"
   labels:
     app: nextcloud
