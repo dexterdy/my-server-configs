@@ -20,7 +20,7 @@ spec:
 
   securityContext:
     runAsGroup: 3000
-
+    runAsUser: 3000
   containers:
     - name: maria-db
       image: docker.io/library/mariadb:10
