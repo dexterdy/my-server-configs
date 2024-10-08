@@ -78,9 +78,9 @@ spec:
             - CAP_NET_RAW
             - CAP_AUDIT_WRITE
       volumeMounts:
-        - mountPath: /var/www/html/:z,idmap=uids=@1000-82-1;gids=@1000-82-1
+        - mountPath: /var/www/html/:z,idmap=uids=1000-82-1;gids=@1000-82-1
           name: nextcloud_html
-        - mountPath: /var/www/html/data:z,idmap=uids=@1000-82-1;gids=@1000-82-1
+        - mountPath: /var/www/html/data:z,idmap=uids=1000-82-1;gids=@1000-82-1
           name: nextcloud_data
 
     - name: caddy
@@ -143,7 +143,7 @@ spec:
         - containerPort: 21027
           hostPort: 21027
       volumeMounts:
-        - mountPath: /var/syncthing/Sync:z,idmap=uids=@1000-1000-1;gids=@1000-1000-1
+        - mountPath: /var/syncthing/Sync:z,idmap=uids=1000-1000-1;gids=@1000-1000-1
           name: syncthing_data
         - mountPath: /var/syncthing:Z
           name: syncthing_config
