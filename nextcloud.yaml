@@ -61,9 +61,9 @@ spec:
         - secretRef:
             name: nextcloud-redis-secrets
       volumeMounts:
-        - mountPath: /var/www/html/:z,idmap=uids=1000-524369-1;gids=1000-524369-1
+        - mountPath: /var/www/html/:z
           name: nextcloud_html
-        - mountPath: /var/www/html/data:z,idmap=uids=1000-524369-1;gids=1000-524369-1
+        - mountPath: /var/www/html/data:z
           name: nextcloud_data
 
     - name: caddy
@@ -105,7 +105,7 @@ spec:
         - containerPort: 21027
           hostPort: 21027
       volumeMounts:
-        - mountPath: /var/syncthing/Sync:z,idmap=uids=1000-525287-1;gids=1000-525287-1
+        - mountPath: /var/syncthing/Sync:z
           name: syncthing_data
         - mountPath: /var/syncthing:Z
           name: syncthing_config
