@@ -32,13 +32,6 @@ spec:
       envFrom:
         - secretRef:
             name: nextcloud-db-secrets
-      resources: {}
-      securityContext:
-        capabilities:
-          drop:
-            - CAP_MKNOD
-            - CAP_NET_RAW
-            - CAP_AUDIT_WRITE
       volumeMounts:
         - mountPath: /var/lib/mysql/:Z
           name: nextcloud_db
@@ -52,13 +45,6 @@ spec:
       envFrom:
         - secretRef:
             name: nextcloud-redis-secrets
-      resources: {}
-      securityContext:
-        capabilities:
-          drop:
-            - CAP_MKNOD
-            - CAP_NET_RAW
-            - CAP_AUDIT_WRITE
 
     - name: nextcloud
       image: docker.io/library/nextcloud:fpm-alpine
@@ -74,13 +60,6 @@ spec:
             name: nextcloud-db-secrets
         - secretRef:
             name: nextcloud-redis-secrets
-      resources: {}
-      securityContext:
-        capabilities:
-          drop:
-            - CAP_MKNOD
-            - CAP_NET_RAW
-            - CAP_AUDIT_WRITE
       volumeMounts:
         - mountPath: /var/www/html/:z,idmap=uids=1000-524369-1;gids=1000-524369-1
           name: nextcloud_html
@@ -92,13 +71,6 @@ spec:
       ports:
         - containerPort: 80
           hostPort: 8080
-      resources: {}
-      securityContext:
-        capabilities:
-          drop:
-            - CAP_MKNOD
-            - CAP_NET_RAW
-            - CAP_AUDIT_WRITE
       volumeMounts:
         - mountPath: /var/www/html:ro,z
           name: nextcloud_html
@@ -122,23 +94,9 @@ spec:
           value: office.scardex.nl
         - name: extra_params
           value: --o:ssl.enable=false --o:ssl.termination=true
-      resources: {}
-      securityContext:
-        capabilities:
-          drop:
-            - CAP_NET_RAW
-            - CAP_AUDIT_WRITE
-          add:
-            - CAP_MKNOD
 
     - name: syncthing
       image: docker.io/syncthing/syncthing:latest
-      securityContext:
-        capabilities:
-          drop:
-            - CAP_MKNOD
-            - CAP_NET_RAW
-            - CAP_AUDIT_WRITE
       ports:
         - containerPort: 8384
           hostPort: 8384
