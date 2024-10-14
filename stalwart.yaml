@@ -10,6 +10,13 @@ spec:
   enableServiceLinks: false
   hostname: syncthing
   restartPolicy: OnFailure
+  securityContext:
+      capabilities:
+        drop:
+        - "ALL"
+        add:
+        - "NET_BIND_SERVICE"
+
   containers:
     - name: stalwart-mail
       image: docker.io/stalwartlabs/mail-server:latest
