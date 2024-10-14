@@ -6,14 +6,11 @@ metadata:
   labels:
     app: stalwart
   name: stalwart
+
 spec:
   enableServiceLinks: false
   hostname: stalwart
   restartPolicy: OnFailure
-  securityContext:
-    sysctls:
-      - name: "net.ipv4.ip_unprivileged_port_start"
-        value: "0"
 
   containers:
     - name: stalwart-mail
@@ -30,6 +27,7 @@ spec:
       volumeMounts:
         - mountPath: /opt/stalwart-mail:Z
           name: stalwart_data
+
   volumes:
     - hostPath:
         path: /mnt/stalwart_data
