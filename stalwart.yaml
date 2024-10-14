@@ -13,9 +13,9 @@ spec:
   securityContext:
       capabilities:
         drop:
-        - "ALL"
+        - ALL
         add:
-        - "NET_BIND_SERVICE"
+        - NET_BIND_SERVICE
 
   containers:
     - name: stalwart-mail
@@ -29,12 +29,6 @@ spec:
           hostPort: 993
         - containerPort: 443
           hostPort: 8443
-      securityContext:
-        capabilities:
-          drop:
-            - CAP_MKNOD
-            - CAP_NET_RAW
-            - CAP_AUDIT_WRITE
       volumeMounts:
         - mountPath: /opt/stalwart-mail:Z
           name: stalwart_data
