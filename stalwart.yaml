@@ -8,7 +8,7 @@ metadata:
   name: stalwart
 spec:
   enableServiceLinks: false
-  hostname: syncthing
+  hostname: stalwart
   restartPolicy: OnFailure
   securityContext:
     capabilities:
