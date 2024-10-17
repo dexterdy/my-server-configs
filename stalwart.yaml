@@ -17,11 +17,11 @@ spec:
       image: docker.io/stalwartlabs/mail-server:latest
       ports:
         - containerPort: 25
-          hostPort: 25
+          hostPort: 8025
         - containerPort: 465
-          hostPort: 465
+          hostPort: 8465
         - containerPort: 993
-          hostPort: 993
+          hostPort: 8993
         - containerPort: 443
           hostPort: 8443
         - containerPort: 8080
