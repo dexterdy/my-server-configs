@@ -70,6 +70,22 @@ spec:
         - mountPath: /etc/caddy/Caddyfile:Z
           name: nextcloud_caddyfile
 
+    - name: collabora
+      image: docker.io/collabora/code:latest
+      ports:
+        - containerPort: 9980
+          hostPort: 9980
+      envFrom:
+        - secretRef:
+            name: nextcloud-collabora-secrets
+      env:
+        - name: domain
+          value: office.scardex.nl
+        - name: server_name
+          value: office.scardex.nl
+        - name: extra_params
+          value: --o:ssl.enable=false --o:ssl.termination=true
+
     - name: syncthing
       image: docker.io/syncthing/syncthing:latest
       env:
