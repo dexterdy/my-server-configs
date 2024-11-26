@@ -80,13 +80,15 @@ spec:
             name: nextcloud-collabora-secrets
       env:
         - name: domain
-          value: office.yourdomain.com
+          value: office.yourdomain.com # <-- change this
         - name: server_name
-          value: office.yourdomain.com
+          value: office.yourdomain.com # <-- change this
         - name: extra_params
           value: --o:ssl.enable=false --o:ssl.termination=true
 
   volumes:
+    # change paths to store data elsewhere
+    # make sure you have write permissions
     - hostPath:
         path: caddy/caddy_data
         type: Directory
