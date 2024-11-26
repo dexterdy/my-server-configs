@@ -86,26 +86,6 @@ spec:
         - name: extra_params
           value: --o:ssl.enable=false --o:ssl.termination=true
 
-    - name: syncthing
-      image: docker.io/syncthing/syncthing:latest
-      env:
-        - name: PUID
-          value: 82
-        - name: PGID
-          value: 82
-      ports:
-        - containerPort: 8384
-          hostPort: 8384
-        - containerPort: 22000
-          hostPort: 22000
-        - containerPort: 21027
-          hostPort: 21027
-      volumeMounts:
-        - mountPath: /var/syncthing/Sync:z
-          name: syncthing_data
-        - mountPath: /var/syncthing:Z
-          name: syncthing_config
-
   volumes:
     - hostPath:
         path: caddy/caddy_data
@@ -127,12 +107,4 @@ spec:
         path: /mnt/nextcloud_data
         type: Directory
       name: nextcloud_data
-    - hostPath:
-        path: /mnt/nextcloud_data/j.p.hagedoorn/files
-        type: Directory
-      name: syncthing_data
-    - hostPath:
-        path: syncthing_config
-        type: Directory
-      name: syncthing_config
 status: {}
