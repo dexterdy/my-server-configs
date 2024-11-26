@@ -80,9 +80,9 @@ spec:
             name: nextcloud-collabora-secrets
       env:
         - name: domain
-          value: office.scardex.nl
+          value: office.yourdomain.com
         - name: server_name
-          value: office.scardex.nl
+          value: office.yourdomain.com
         - name: extra_params
           value: --o:ssl.enable=false --o:ssl.termination=true
 
@@ -104,7 +104,7 @@ spec:
         type: Directory
       name: nextcloud_html
     - hostPath:
-        path: /mnt/nextcloud_data
+        path: data
         type: Directory
       name: nextcloud_data
 status: {}
