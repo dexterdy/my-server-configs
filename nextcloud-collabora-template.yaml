@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: nextcloud-collabora-secrets
-type: Opaque
-stringData:
-  password:
-  username:
-  server_name:
