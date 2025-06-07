@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: nextcloud-redis-secrets
-type: Opaque
-stringData:
-  REDIS_HOST_PASSWORD:

@@ -7,7 +7,6 @@ Yaml=%h/nextcloud-app/nextcloud.yaml
 SetWorkingDirectory=yaml
 
 [Service]
-ExecStartPre=/usr/bin/podman kube play ./nextcloud-collabora-secrets.yaml
 ExecStartPre=/usr/bin/podman kube play ./nextcloud-redis-secrets.yaml
 ExecStartPre=/usr/bin/podman kube play ./nextcloud-db-secrets.yaml
 Restart=always
