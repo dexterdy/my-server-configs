@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    io.containers.autoupdate: registry
+  labels:
+    app: factorio
+  name: factorio
+
+spec:
+  enableServiceLinks: false
+  hostname: factorio
+  restartPolicy: OnFailure
+
+  containers:
+    - name: app
+      image: docker.io/factoriotools/factorio:stable
+      imagePullPolicy: always
+      ports:
+        - containerPort: 34197
+          hostPort: 34197
+          protocol: UDP
+        - containerPort: 27015
+          hostPort: 27015
+      env:
+        - name: GENERATE_NEW_SAVE
+          value: "true"
+        - name: UPDATE_MODS_ON_START
+          value: "true"
+        - name: SAVE_NAME
+          value: dex_save_
+        - name: DLC_SPACE_AGE
+          value: "false"
+      envFrom:
+        - secretRef:
+            name: factorio-secrets
+      volumeMounts:
+        - mountPath: /factorio:Z
+          name: factorio-data
+
+  volumes:
+    - hostPath:
+        path: factorio-data
+        type: Directory
+      name: factorio-data
+status: {}
