@@ -1,9 +1,9 @@
 [Unit]
-Description=quadlet that starts the stalwart pod
+Description=quadlet that starts the adguard pod
 
 [Kube]
 AutoUpdate=registry
-Yaml=%h/stalwart-app/stalwart.yaml
+Yaml=%h/adguard-app/adguard.yaml
 SetWorkingDirectory=yaml
 
 [Service]
