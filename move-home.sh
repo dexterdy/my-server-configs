@@ -1,4 +1,7 @@
-for dir in */; do
-    /bin/cp -rf "$dir/*" "/home/$dir/$dir-app"
-    chown -R $dir:$dir "/home/$dir/$dir-app"
+for dir in *; do
+    if [ -d $dir ]; then
+        mkdir -p "test/$dir/$dir-app"
+        /bin/cp -rf "$dir" "/home/$dir/$dir-app"
+        chown -R $dir:$dir "/home/$dir/$dir-app"
+    fi
 done
