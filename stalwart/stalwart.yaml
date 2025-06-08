@@ -24,8 +24,6 @@ spec:
           hostPort: 8993
         - containerPort: 443
           hostPort: 8443
-        - containerPort: 8080
-          hostPort: 8081
       volumeMounts:
         - mountPath: /opt/stalwart-mail:Z
           name: stalwart_data
