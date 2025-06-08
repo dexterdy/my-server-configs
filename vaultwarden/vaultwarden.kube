@@ -1,0 +1,14 @@
+[Unit]
+Description=quadlet that starts the vaultwarden pod
+
+[Kube]
+AutoUpdate=registry
+Yaml=%h/vaultwarden-app/vaultwarden.yaml
+SetWorkingDirectory=yaml
+
+[Service]
+ExecStartPre=/usr/bin/podman kube play ./vaultwarden-secrets.yaml
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -15,15 +15,20 @@ spec:
   containers:
     - name: vaultwarden
       image: docker.io/vaultwarden/server:latest
+      envFrom:
+        - secretRef:
+            name: vaultwarden-secrets
       env:
         - name: DOMAIN
           value: https://vault.scardex.nl
+        - name: SIGNUPS_ALLOWED
+          value: false
       volumeMounts:
         - mountPath: /data/:Z
           name: vaultwarden_data
       ports:
         - containerPort: 80
-          hostPot: 8083
+          hostPort: 8083
 
   volumes:
     - name: vaultwarden_data
