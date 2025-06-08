@@ -2,4 +2,3 @@ db/*
 caddy/*
 !caddy/Caddyfile
 html/*
-nextcloud_data/*
