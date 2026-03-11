@@ -2,4 +2,4 @@ db/*
 caddy/*
 !caddy/Caddyfile
 html/*
-syncthing_config/
+syncthing_config/*
