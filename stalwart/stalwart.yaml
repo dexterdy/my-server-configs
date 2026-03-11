@@ -14,7 +14,7 @@ spec:
 
   containers:
     - name: stalwart-mail
-      image: docker.io/stalwartlabs/mail-server:latest
+      image: docker.io/stalwartlabs/stalwart:v0.15
       ports:
         - containerPort: 25
           hostPort: 8025
@@ -25,7 +25,7 @@ spec:
         - containerPort: 443
           hostPort: 8443
       volumeMounts:
-        - mountPath: /opt/stalwart-mail:Z
+        - mountPath: /opt/stalwart:Z
           name: stalwart_data
 
   volumes:

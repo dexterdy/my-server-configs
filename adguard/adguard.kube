@@ -5,6 +5,7 @@ Description=quadlet that starts the adguard pod
 AutoUpdate=registry
 Yaml=%h/adguard-app/adguard.yaml
 SetWorkingDirectory=yaml
+Network=pasta:--dns-forward,1.1.1.1
 
 [Service]
 Restart=always
