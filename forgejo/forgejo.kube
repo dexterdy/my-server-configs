@@ -1,0 +1,13 @@
+[Unit]
+Description=quadlet that starts the forgejo pod
+
+[Kube]
+AutoUpdate=registry
+Yaml=%h/forgejo-app/forgejo.yaml
+SetWorkingDirectory=yaml
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

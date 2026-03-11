@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    io.containers.autoupdate: registry
+  labels:
+    app: forgejo
+  name: forgejo
+
+spec:
+  enableServiceLinks: false
+  hostname: forgejo
+  restartPolicy: OnFailure
+
+  containers:
+    - name: forgejo
+      image: codeberg.org/forgejo/forgejo:14-rootless
+      env:
+        - name: FORGEJO__database__DB_TYPE
+          value: postgres
+        - name: FORGEJO__database__HOST
+          value: localhost:5432
+        - name: FORGEJO__database__NAME
+          value: forgejo
+        - name: FORGEJO__database__USER
+          value: forgejo
+        - name: FORGEJO__database__PASSWD
+          value: forgejo
+      ports:
+        - containerPort: 3000
+          hostPort: 3000
+        - containerPort: 22
+          hostPort: 3222
+      volumeMounts:
+        - mountPath: /var/lib/gitea:Z
+          name: forgejo_data
+        - mountPath: /etc/gitea:Z
+          name: forgejo_config
+        - mountPath: /etc/localtime:ro
+          name: localtime
+
+    - name: forgejo-db
+      image: docker.io/postgres:14
+      env:
+        - name: POSTGRES_USER
+          value: forgejo
+        - name: POSTGRES_PASSWORD
+          value: forgejo
+        - name: POSTGRES_DB
+          value: forgejo
+      volumeMounts:
+        - mountPath: /var/lib/postgresql/data:Z
+          name: forgejo_db
+
+  volumes:
+    - hostPath:
+        path: /mnt/forgejo_data/data
+        type: Directory
+      name: forgejo_data
+    - hostPath:
+        path: config
+        type: Directory
+      name: forgejo_config
+    - hostPath:
+        path: /etc/localtime
+        type: Directory
+      name: localtime
+    - hostPath:
+        path: /mnt/forgejo_data/db
+        type: Directory
+      name: forgejo_db
