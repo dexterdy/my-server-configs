@@ -3,6 +3,7 @@ kind: Pod
 metadata:
   annotations:
     io.containers.autoupdate: registry
+    io.podman.annotations.userns: "keep-id"
   labels:
     app: forgejo
   name: forgejo
@@ -12,10 +13,18 @@ spec:
   hostname: forgejo
   restartPolicy: OnFailure
 
+  securityContext:
+    runAsUser: 1006
+    runAsGroup: 1006
+
   containers:
     - name: forgejo
       image: codeberg.org/forgejo/forgejo:14-rootless
       env:
+        - name: USER_UID
+          value: "1006"
+        - name: USER_GID
+          value: "1006"
         - name: FORGEJO__database__DB_TYPE
           value: postgres
         - name: FORGEJO__database__HOST
@@ -29,7 +38,7 @@ spec:
       ports:
         - containerPort: 3000
           hostPort: 3000
-        - containerPort: 22
+        - containerPort: 3222
           hostPort: 3222
       volumeMounts:
         - mountPath: /var/lib/gitea:Z
@@ -63,7 +72,7 @@ spec:
       name: forgejo_config
     - hostPath:
         path: /etc/localtime
-        type: Directory
+        type: File
       name: localtime
     - hostPath:
         path: /mnt/forgejo_data/db
